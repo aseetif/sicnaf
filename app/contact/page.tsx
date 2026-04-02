@@ -21,7 +21,7 @@ export default function ContactPage() {
               {[
                 { icon: Phone, label: 'Téléphone', value: '+213 550 59 56 30', sub: 'Du Dimanche au Jeudi, 8h-18h', href: 'tel:+213550595630' },
                 { icon: Mail, label: 'Email', value: 'contact@sicnaf.fr', sub: 'Réponse sous 24h', href: 'mailto:contact@sicnaf.fr' },
-                { icon: MapPin, label: 'Zone d\'intervention', value: 'Beni Tamou, Zaouia<br />Blida 09000, Algérie', sub: 'Algérie entière sur devis', href: '#' },
+                { icon: MapPin, label: 'Zone d\'intervention', value: 'Beni Tamou, Zaouia<br />Blida 09000, Algérie', sub: 'Algérie entière sur devis', href: 'https://www.google.com/maps/search/?api=1&query=Beni+Tamou+Zaouia+Blida+Algerie' },
                 { icon: Clock, label: 'Horaires', value: 'Dim–Jeu : 8h–18h', sub: 'Urgences 24h/24', href: '#' },
               ].map((item) => (
                 <a key={item.label} href={item.href} className="card flex items-center gap-4 hover:border-sicnaf-300 group">

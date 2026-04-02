@@ -203,7 +203,7 @@ export default function HomePage() {
             {[
               { icon: Phone, label: 'Téléphone', value: '+213 550 59 56 30', href: 'tel:+213550595630' },
               { icon: Mail, label: 'Email', value: 'contact@sicnaf.fr', href: 'mailto:contact@sicnaf.fr' },
-              { icon: MapPin, label: 'Adresse', value: 'Beni Tamou, Zaouia, Blida 09000', href: '#' },
+              { icon: MapPin, label: 'Adresse', value: 'Beni Tamou, Zaouia, Blida 09000', sub: 'Algérie entière sur devis', href: 'https://www.google.com/maps/search/?api=1&query=Beni+Tamou+Zaouia+Blida+Algerie' },
                         ].map((item) => (
               <a key={item.label} href={item.href} className="card text-center hover:border-sicnaf-300 group">
                 <div className="w-12 h-12 rounded-xl bg-sicnaf-50 flex items-center justify-center mx-auto mb-4 group-hover:bg-sicnaf-500 transition-colors">

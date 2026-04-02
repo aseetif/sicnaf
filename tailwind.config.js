@@ -38,10 +38,16 @@ module.exports = {
           900: '#0f172a',
         }
       },
+      // fontFamily: {
+      //   display: ['var(--font-display)', 'serif'],
+      //   body: ['var(--font-body)', 'sans-serif'],
+      //   mono: ['var(--font-mono)', 'monospace'],
+      // },
+
       fontFamily: {
-        display: ['var(--font-display)', 'serif'],
-        body: ['var(--font-body)', 'sans-serif'],
-        mono: ['var(--font-mono)', 'monospace'],
+        display: ['Georgia', 'serif'],
+        body: ['Arial', 'sans-serif'],
+        mono: ['monospace'],
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
