@@ -3,7 +3,7 @@ import { prisma } from '@/lib/prisma'
 import { notFound } from 'next/navigation'
 import { formatDate, formatCurrency, getStatutColor, getStatutLabel, getTypeServiceLabel } from '@/lib/utils'
 import Link from 'next/link'
-import { ArrowLeft, FileText, Plus, Edit3, MapPin, User, Wrench, Calendar } from 'lucide-react'
+import { ArrowLeft, FileText, Plus, Edit, MapPin, User, Wrench, Calendar } from 'lucide-react'
 import InterventionDetailActions from './InterventionDetailActions'
 
 export default async function InterventionDetailPage({ params }: { params: { id: string } }) {
@@ -36,6 +36,9 @@ export default async function InterventionDetailPage({ params }: { params: { id:
           </div>
         </div>
         <div className="flex gap-2">
+          <Link href={`/admin/interventions/${intervention.id}/modifier`} className="btn-outline text-sm">
+            <Edit className="w-4 h-4" /> Modifier
+          </Link>
           <InterventionDetailActions intervention={intervention} />
         </div>
       </div>

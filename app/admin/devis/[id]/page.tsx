@@ -3,7 +3,7 @@ import { prisma } from '@/lib/prisma'
 import { notFound } from 'next/navigation'
 import { formatDate, formatCurrency, getStatutColor, getStatutLabel, getTypeServiceLabel } from '@/lib/utils'
 import Link from 'next/link'
-import { ArrowLeft, Download, User, MapPin, Calendar } from 'lucide-react'
+import { ArrowLeft, Download, User, MapPin, Calendar, Edit } from 'lucide-react'
 import DevisDetailActions from './DevisDetailActions'
 
 export default async function DevisDetailPage({ params }: { params: { id: string } }) {
@@ -31,8 +31,11 @@ export default async function DevisDetailPage({ params }: { params: { id: string
           </div>
         </div>
         <div className="flex gap-2">
-          <DevisDetailActions devis={devis} />
-        </div>
+  <Link href={`/admin/devis/${devis.id}/modifier`} className="btn-outline text-sm">
+    <Edit className="w-4 h-4" /> Modifier
+  </Link>
+  <DevisDetailActions devis={devis} />
+</div>
       </div>
 
       <div className="grid lg:grid-cols-3 gap-6">
