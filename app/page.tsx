@@ -130,46 +130,17 @@ export default function HomePage() {
       </section>
 
       {/* Services */}
-      <section id="services" className="py-24 bg-steel-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <span className="text-accent font-semibold text-sm uppercase tracking-widest">Nos expertises</span>
-            <h2 className="section-title mt-3 mb-4">Nos Services</h2>
-            <p className="section-subtitle mx-auto">
-              Une gamme complète de services industriels pour répondre à tous vos besoins d'installation, réparation et maintenance.
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-8">
-            {services.map((service) => (
-              <div key={service.title} className="card group">
-                <div className="flex items-start gap-4">
-                  <div className="w-14 h-14 rounded-xl bg-sicnaf-500 flex items-center justify-center shrink-0 group-hover:bg-accent transition-colors duration-300">
-                    <service.icon className="w-7 h-7 text-white" />
-                  </div>
-                  <div className="flex-1">
-                    <h3 className="font-display text-xl font-bold text-sicnaf-500 mb-2">{service.title}</h3>
-                    <p className="text-steel-500 text-sm leading-relaxed mb-4">{service.description}</p>
-                    <ul className="grid grid-cols-2 gap-1.5">
-                      {service.features.map((f) => (
-                        <li key={f} className="flex items-center gap-1.5 text-sm text-steel-600">
-                          <CheckCircle className="w-3.5 h-3.5 text-accent shrink-0" />
-                          {f}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          <div className="text-center mt-12">
-            <Link href="/devis" className="btn-primary">
-              Demander un devis pour votre projet
-              <ArrowRight className="w-5 h-5" />
-            </Link>
-          </div>
+      <section id="services" className="py-20 bg-steel-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <span className="text-accent font-semibold text-sm uppercase tracking-widest">Notre expertise</span>
+          <h2 className="section-title mt-3 mb-4">Nos Services</h2>
+          <p className="section-subtitle mx-auto mb-10">
+            Installation de bennes, véhicules spéciaux, transformation, réparation et construction métallique. Découvrez toute notre gamme de services industriels.
+          </p>
+          <Link href="/services" className="btn-primary text-base px-8 py-4">
+            Découvrir tous nos services
+            <ArrowRight className="w-5 h-5" />
+          </Link>
         </div>
       </section>
 
