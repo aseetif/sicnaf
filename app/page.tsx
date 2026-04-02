@@ -201,10 +201,10 @@ export default function HomePage() {
 
           <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
             {[
-              { icon: Phone, label: 'Téléphone', value: '01 23 45 67 89', href: 'tel:0123456789' },
+              { icon: Phone, label: 'Téléphone', value: '+213 550 59 56 30', href: 'tel:+213550595630' },
               { icon: Mail, label: 'Email', value: 'contact@sicnaf.fr', href: 'mailto:contact@sicnaf.fr' },
-              { icon: MapPin, label: 'Zone d\'intervention', value: 'Île-de-France & régions', href: '#' },
-            ].map((item) => (
+              { icon: MapPin, label: 'Adresse', value: 'Beni Tamou, Zaouia, Blida 09000', href: '#' },
+                        ].map((item) => (
               <a key={item.label} href={item.href} className="card text-center hover:border-sicnaf-300 group">
                 <div className="w-12 h-12 rounded-xl bg-sicnaf-50 flex items-center justify-center mx-auto mb-4 group-hover:bg-sicnaf-500 transition-colors">
                   <item.icon className="w-6 h-6 text-sicnaf-500 group-hover:text-white transition-colors" />
