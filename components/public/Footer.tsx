@@ -46,7 +46,8 @@ export default function Footer() {
             <ul className="space-y-3">
               <li className="flex items-center gap-2 text-white/60 text-sm">
                 <Phone className="w-4 h-4 text-accent shrink-0" />
-                <a href="tel:0123456789" className="hover:text-accent transition-colors">01 23 45 67 89</a>
+                <a href="tel:0550 59 56 30" className="hover:text-accent transition-colors">+213 550 59 56 30
+</a>
               </li>
               <li className="flex items-center gap-2 text-white/60 text-sm">
                 <Mail className="w-4 h-4 text-accent shrink-0" />
@@ -54,7 +55,7 @@ export default function Footer() {
               </li>
               <li className="flex items-start gap-2 text-white/60 text-sm">
                 <MapPin className="w-4 h-4 text-accent shrink-0 mt-0.5" />
-                <span>Île-de-France & régions<br />France</span>
+                <span>Beni Tamou, Zaouia<br />Blida 09000, Algérie</span>
               </li>
             </ul>
           </div>

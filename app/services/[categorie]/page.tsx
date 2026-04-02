@@ -85,7 +85,9 @@ export default function CategorieDetailPage({ params }: { params: { categorie: s
           <p className="text-steel-500 mb-8">Contactez-nous pour un devis gratuit ou appelez-nous directement.</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href="/devis" className="btn-accent">Demander un devis <ArrowRight className="w-5 h-5" /></Link>
-            <a href="tel:0123456789" className="btn-outline"><Phone className="w-5 h-5" /> Appeler maintenant</a>
+            <a href="tel:+213550595630" className="btn-outline">
+                <Phone className="w-5 h-5" /> +213 550 59 56 30
+            </a>
           </div>
         </div>
       </section>

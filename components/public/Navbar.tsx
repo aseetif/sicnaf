@@ -34,7 +34,8 @@ export default function Navbar() {
           <div className="hidden md:flex items-center gap-3">
             <a href="tel:0123456789" className="flex items-center gap-1.5 text-sm text-steel-600 hover:text-sicnaf-500 font-medium">
               <Phone className="w-4 h-4" />
-              01 23 45 67 89
+              +213 550 59 56 30
+
             </a>
             <Link href="/devis" className="btn-accent text-sm px-5 py-2.5">
               Devis gratuit
