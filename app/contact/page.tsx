@@ -19,10 +19,10 @@ export default function ContactPage() {
             {/* Info */}
             <div className="space-y-5">
               {[
-                { icon: Phone, label: 'Téléphone', value: '01 23 45 67 89', sub: 'Du lundi au vendredi, 8h-18h', href: 'tel:0123456789' },
+                { icon: Phone, label: 'Téléphone', value: '+213 550 59 56 30', sub: 'Du Dimanche au Jeudi, 8h-18h', href: 'tel:+213550595630' },
                 { icon: Mail, label: 'Email', value: 'contact@sicnaf.fr', sub: 'Réponse sous 24h', href: 'mailto:contact@sicnaf.fr' },
-                { icon: MapPin, label: 'Zone d\'intervention', value: 'Île-de-France & régions', sub: 'France entière sur devis', href: '#' },
-                { icon: Clock, label: 'Horaires', value: 'Lun–Ven : 8h–18h', sub: 'Urgences 24h/24', href: '#' },
+                { icon: MapPin, label: 'Zone d\'intervention', value: 'Beni Tamou, Zaouia<br />Blida 09000, Algérie', sub: 'Algérie entière sur devis', href: '#' },
+                { icon: Clock, label: 'Horaires', value: 'Dim–Jeu : 8h–18h', sub: 'Urgences 24h/24', href: '#' },
               ].map((item) => (
                 <a key={item.label} href={item.href} className="card flex items-center gap-4 hover:border-sicnaf-300 group">
                   <div className="w-12 h-12 bg-sicnaf-500 rounded-xl flex items-center justify-center shrink-0 group-hover:bg-accent transition-colors">
