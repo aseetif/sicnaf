@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic'
+
 // app/api/devis/[id]/route.ts
 import { NextRequest, NextResponse } from 'next/server'
 import { getServerSession } from 'next-auth'
