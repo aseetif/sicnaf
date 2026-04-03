@@ -1,7 +1,5 @@
 export const dynamic = 'force-dynamic'
 
-export const dynamic = 'force-dynamic'
-
 // app/api/auth/[...nextauth]/route.ts
 import NextAuth from 'next-auth'
 import { authOptions } from '@/lib/auth'
