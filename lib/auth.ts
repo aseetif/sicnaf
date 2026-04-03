@@ -1,8 +1,6 @@
-// lib/auth.ts
 import { NextAuthOptions } from 'next-auth'
 import CredentialsProvider from 'next-auth/providers/credentials'
 import bcrypt from 'bcryptjs'
-import { prisma } from '@/lib/prisma'
 
 export const authOptions: NextAuthOptions = {
   providers: [
@@ -16,6 +14,8 @@ export const authOptions: NextAuthOptions = {
         if (!credentials?.email || !credentials?.password) {
           throw new Error('Email et mot de passe requis')
         }
+
+        const { prisma } = await import('@/lib/prisma')
 
         const user = await prisma.user.findUnique({
           where: { email: credentials.email },
@@ -65,7 +65,7 @@ export const authOptions: NextAuthOptions = {
   },
   session: {
     strategy: 'jwt',
-    maxAge: 24 * 60 * 60, // 24 hours
+    maxAge: 24 * 60 * 60,
   },
   secret: process.env.NEXTAUTH_SECRET,
 }
