@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic'
+
 // app/admin/clients/page.tsx
 import { prisma } from '@/lib/prisma'
 import { formatDate } from '@/lib/utils'

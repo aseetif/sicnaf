@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic'
+
 // app/admin/demandes/page.tsx
 import { prisma } from '@/lib/prisma'
 import { formatDate, getStatutColor, getStatutLabel, getTypeServiceLabel } from '@/lib/utils'
