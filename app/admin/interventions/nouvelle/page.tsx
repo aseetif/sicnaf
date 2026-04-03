@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic'
+
 // app/admin/interventions/nouvelle/page.tsx
 import { prisma } from '@/lib/prisma'
 import NouvelleInterventionForm from './NouvelleInterventionForm'

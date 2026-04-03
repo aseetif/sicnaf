@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic'
+
 // app/admin/interventions/[id]/facture/page.tsx
 import { prisma } from '@/lib/prisma'
 import { notFound } from 'next/navigation'
