@@ -1,5 +1,3 @@
-export const dynamic = 'force-dynamic'
-
 // app/admin/clients/nouveau/page.tsx
 'use client'
 

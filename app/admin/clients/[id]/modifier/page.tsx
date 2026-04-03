@@ -1,5 +1,3 @@
-export const dynamic = 'force-dynamic'
-
 // app/admin/clients/[id]/modifier/page.tsx
 import { prisma } from '@/lib/prisma'
 import { notFound } from 'next/navigation'

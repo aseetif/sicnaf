@@ -1,5 +1,3 @@
-export const dynamic = 'force-dynamic'
-
 // app/admin/dashboard/page.tsx
 import { prisma } from '@/lib/prisma'
 import { getServerSession } from 'next-auth'

@@ -1,5 +1,3 @@
-export const dynamic = 'force-dynamic'
-
 // app/admin/devis/nouveau/page.tsx
 import { prisma } from '@/lib/prisma'
 import NouveauDevisForm from './NouveauDevisForm'
