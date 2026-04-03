@@ -40,12 +40,11 @@ export default function NouveauClientPage() {
   return (
     <div>
       <div className="flex items-center gap-4 mb-8">
-        <Link href="/admin/clients" className="p-2 rounded-xl hover:bg-steel-100 transition-colors">
+        <Link href="/admin/clients" className="p-2 rounded-xl hover:bg-steel-100">
           <ArrowLeft className="w-5 h-5" />
         </Link>
         <h1 className="font-display text-3xl font-bold text-sicnaf-500">Nouveau client</h1>
       </div>
-
       <form onSubmit={handleSubmit} className="max-w-2xl space-y-6">
         <div className="card space-y-5">
           <h2 className="font-semibold text-sicnaf-500 pb-2 border-b border-steel-100">Informations personnelles</h2>
@@ -68,7 +67,6 @@ export default function NouveauClientPage() {
             </div>
           </div>
         </div>
-
         <div className="card space-y-5">
           <h2 className="font-semibold text-sicnaf-500 pb-2 border-b border-steel-100">Adresse</h2>
           <div>
@@ -86,7 +84,6 @@ export default function NouveauClientPage() {
             </div>
           </div>
         </div>
-
         <div className="card space-y-5">
           <h2 className="font-semibold text-sicnaf-500 pb-2 border-b border-steel-100">Informations professionnelles</h2>
           <div className="grid sm:grid-cols-2 gap-4">
@@ -104,11 +101,7 @@ export default function NouveauClientPage() {
             <textarea name="notes" value={form.notes} onChange={handleChange} rows={3} className="input resize-none" />
           </div>
         </div>
-
-        {error && (
-          <div className="bg-red-50 border border-red-200 text-red-700 rounded-lg px-4 py-3 text-sm">{error}</div>
-        )}
-
+        {error && <div className="bg-red-50 border border-red-200 text-red-700 rounded-lg px-4 py-3 text-sm">{error}</div>}
         <div className="flex gap-3">
           <button type="submit" disabled={loading} className="btn-primary">
             {loading ? <><Loader2 className="w-4 h-4 animate-spin" /> Enregistrement...</> : <><Save className="w-4 h-4" /> Enregistrer</>}
