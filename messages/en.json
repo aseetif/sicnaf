@@ -1,77 +1,77 @@
 {
   "nav": {
-    "services": "Nos Services",
-    "fonctionnement": "Fonctionnement",
+    "services": "Our Services",
+    "fonctionnement": "How it works",
     "contact": "Contact",
-    "devis": "Devis gratuit",
+    "devis": "Free quote",
     "admin": "Admin"
   },
   "hero": {
-    "badge": "Spécialiste intervention industrielle",
-    "title1": "Solutions",
-    "title2": "Industrielles",
-    "title3": "Professionnelles",
-    "description": "SICNAF intervient pour l'installation de bennes, conteneurs, la réparation et la maintenance de vos équipements industriels. Rapide, fiable, professionnel.",
-    "cta_devis": "Demander un devis gratuit",
-    "cta_call": "Appeler maintenant",
-    "badge1": "Assurance RC Pro",
-    "badge2": "Certifié qualifié",
-    "badge3": "Intervention rapide"
+    "badge": "Industrial intervention specialist",
+    "title1": "Industrial",
+    "title2": "Solutions",
+    "title3": "Professional",
+    "description": "SICNAF specializes in the installation of skips, containers, repair and maintenance of your industrial equipment. Fast, reliable, professional.",
+    "cta_devis": "Request a free quote",
+    "cta_call": "Call now",
+    "badge1": "Professional insurance",
+    "badge2": "Certified qualified",
+    "badge3": "Fast intervention"
   },
   "stats": {
-    "interventions": "Interventions réalisées",
-    "experience": "D'expérience",
-    "satisfaction": "Clients satisfaits",
-    "delai": "Délai d'intervention"
+    "interventions": "Interventions completed",
+    "experience": "Years of experience",
+    "satisfaction": "Satisfied clients",
+    "delai": "Intervention delay"
   },
   "services": {
-    "title": "Nos Services",
-    "subtitle": "Une gamme complète de services industriels pour répondre à tous vos besoins.",
-    "cta": "Découvrir tous nos services"
+    "title": "Our Services",
+    "subtitle": "A complete range of industrial services to meet all your needs.",
+    "cta": "Discover all our services"
   },
   "steps": {
-    "title": "Comment ça fonctionne ?",
-    "s1_title": "Demande de devis",
-    "s1_desc": "Remplissez notre formulaire en ligne avec vos besoins.",
-    "s2_title": "Étude & chiffrage",
-    "s2_desc": "Nous analysons votre demande et préparons un devis détaillé.",
+    "title": "How does it work?",
+    "s1_title": "Quote request",
+    "s1_desc": "Fill out our online form with your needs.",
+    "s2_title": "Study & pricing",
+    "s2_desc": "We analyze your request and prepare a detailed quote.",
     "s3_title": "Intervention",
-    "s3_desc": "Nos techniciens interviennent selon le planning convenu.",
-    "s4_title": "Facturation",
-    "s4_desc": "Réception de votre facture claire et détaillée."
+    "s3_desc": "Our technicians intervene according to the agreed schedule.",
+    "s4_title": "Billing",
+    "s4_desc": "Receive your clear and detailed invoice."
   },
   "cta": {
-    "title": "Besoin d'une intervention rapide ?",
-    "desc": "Notre équipe intervient sous 48h sur votre site. Devis gratuit et sans engagement.",
-    "devis": "Demander un devis gratuit",
-    "contact": "Nous contacter"
+    "title": "Need a quick intervention?",
+    "desc": "Our team intervenes within 48 hours on your site. Free and non-binding quote.",
+    "devis": "Request a free quote",
+    "contact": "Contact us"
   },
   "contact": {
-    "title": "Contactez-nous",
-    "phone": "Téléphone",
+    "title": "Contact us",
+    "phone": "Phone",
     "email": "Email",
-    "zone": "Zone d'intervention",
-    "zone_value": "Blida & régions, Algérie"
+    "zone": "Service area",
+    "zone_value": "Blida & regions, Algeria"
   },
   "footer": {
-    "rights": "Tous droits réservés.",
-    "admin": "Espace admin"
+    "rights": "All rights reserved.",
+    "admin": "Admin area"
   },
   "devis": {
-    "title": "Demande de Devis",
-    "subtitle": "Remplissez le formulaire ci-dessous. Nous vous recontactons sous 24h.",
-    "prenom": "Prénom",
-    "nom": "Nom",
+    "title": "Quote Request",
+    "subtitle": "Fill in the form below. We will contact you within 24 hours.",
+    "prenom": "First name",
+    "nom": "Last name",
     "email": "Email",
-    "telephone": "Téléphone",
-    "societe": "Société (optionnel)",
-    "type_service": "Type de service",
-    "description": "Description de votre besoin",
-    "adresse": "Adresse du chantier",
-    "date": "Date souhaitée d'intervention",
-    "submit": "Envoyer ma demande de devis",
-    "success_title": "Demande envoyée !",
-    "success_desc": "Votre demande a bien été reçue. Notre équipe vous contactera dans les 24 heures.",
-    "new_request": "Nouvelle demande"
+    "telephone": "Phone",
+    "societe": "Company (optional)",
+    "type_service": "Type of service",
+    "description": "Description of your need",
+    "adresse": "Site address",
+    "date": "Desired intervention date",
+    "submit": "Send my quote request",
+    "success_title": "Request sent!",
+    "success_desc": "Your request has been received. Our team will contact you within 24 hours.",
+    "new_request": "New request"
   }
 }
