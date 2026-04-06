@@ -1,0 +1,77 @@
+{
+  "nav": {
+    "services": "Nos Services",
+    "fonctionnement": "Fonctionnement",
+    "contact": "Contact",
+    "devis": "Devis gratuit",
+    "admin": "Admin"
+  },
+  "hero": {
+    "badge": "Spécialiste intervention industrielle",
+    "title1": "Solutions",
+    "title2": "Industrielles",
+    "title3": "Professionnelles",
+    "description": "SICNAF intervient pour l'installation de bennes, conteneurs, la réparation et la maintenance de vos équipements industriels. Rapide, fiable, professionnel.",
+    "cta_devis": "Demander un devis gratuit",
+    "cta_call": "Appeler maintenant",
+    "badge1": "Assurance RC Pro",
+    "badge2": "Certifié qualifié",
+    "badge3": "Intervention rapide"
+  },
+  "stats": {
+    "interventions": "Interventions réalisées",
+    "experience": "D'expérience",
+    "satisfaction": "Clients satisfaits",
+    "delai": "Délai d'intervention"
+  },
+  "services": {
+    "title": "Nos Services",
+    "subtitle": "Une gamme complète de services industriels pour répondre à tous vos besoins.",
+    "cta": "Découvrir tous nos services"
+  },
+  "steps": {
+    "title": "Comment ça fonctionne ?",
+    "s1_title": "Demande de devis",
+    "s1_desc": "Remplissez notre formulaire en ligne avec vos besoins.",
+    "s2_title": "Étude & chiffrage",
+    "s2_desc": "Nous analysons votre demande et préparons un devis détaillé.",
+    "s3_title": "Intervention",
+    "s3_desc": "Nos techniciens interviennent selon le planning convenu.",
+    "s4_title": "Facturation",
+    "s4_desc": "Réception de votre facture claire et détaillée."
+  },
+  "cta": {
+    "title": "Besoin d'une intervention rapide ?",
+    "desc": "Notre équipe intervient sous 48h sur votre site. Devis gratuit et sans engagement.",
+    "devis": "Demander un devis gratuit",
+    "contact": "Nous contacter"
+  },
+  "contact": {
+    "title": "Contactez-nous",
+    "phone": "Téléphone",
+    "email": "Email",
+    "zone": "Zone d'intervention",
+    "zone_value": "Blida & régions, Algérie"
+  },
+  "footer": {
+    "rights": "Tous droits réservés.",
+    "admin": "Espace admin"
+  },
+  "devis": {
+    "title": "Demande de Devis",
+    "subtitle": "Remplissez le formulaire ci-dessous. Nous vous recontactons sous 24h.",
+    "prenom": "Prénom",
+    "nom": "Nom",
+    "email": "Email",
+    "telephone": "Téléphone",
+    "societe": "Société (optionnel)",
+    "type_service": "Type de service",
+    "description": "Description de votre besoin",
+    "adresse": "Adresse du chantier",
+    "date": "Date souhaitée d'intervention",
+    "submit": "Envoyer ma demande de devis",
+    "success_title": "Demande envoyée !",
+    "success_desc": "Votre demande a bien été reçue. Notre équipe vous contactera dans les 24 heures.",
+    "new_request": "Nouvelle demande"
+  }
+}
