@@ -1,4 +1,3 @@
-// app/admin/interventions/nouvelle/NouvelleInterventionForm.tsx
 'use client'
 
 import { useState } from 'react'
@@ -58,7 +57,7 @@ export default function NouvelleInterventionForm({ clients }: { clients: any[] }
   const removeLigne = (idx: number) => setLignes(lignes.filter((_, i) => i !== idx))
 
   const sousTotal = lignes.reduce((acc, l) => acc + l.total, 0)
-  const total = sousTotal * (1 + form.tva / 100)
+  const total = sousTotal * (1 + Number(form.tva) / 100)
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -94,7 +93,6 @@ export default function NouvelleInterventionForm({ clients }: { clients: any[] }
         </Link>
       </div>
 
-      {/* General info */}
       <div className="card space-y-5">
         <h2 className="font-semibold text-sicnaf-500 pb-2 border-b border-steel-100">Informations générales</h2>
         <div className="grid sm:grid-cols-2 gap-4">
@@ -141,7 +139,6 @@ export default function NouvelleInterventionForm({ clients }: { clients: any[] }
             <Plus className="w-4 h-4" /> Ajouter une pièce
           </button>
         </div>
-
         {pieces.length === 0 ? (
           <p className="text-steel-300 text-sm italic">Aucune pièce ajoutée</p>
         ) : (
@@ -159,10 +156,10 @@ export default function NouvelleInterventionForm({ clients }: { clients: any[] }
                   <input value={l.description} onChange={e => updateLigne(idx, 'description', e.target.value)} className="input text-sm py-1.5" placeholder="Description de la pièce" />
                 </div>
                 <div className="col-span-2">
-                  <input type="number" min="0" step="0.01" value={l.quantite} onChange={e => updateLigne(idx, 'quantite', Number(e.target.value))} className="input text-sm py-1.5 text-center" />
+                  <input type="number" min="0" step="0.01" value={l.quantite || ''} onChange={e => updateLigne(idx, 'quantite', e.target.value === '' ? 0 : Number(e.target.value))} className="input text-sm py-1.5 text-center" />
                 </div>
                 <div className="col-span-2">
-                  <input type="number" min="0" step="0.01" value={l.prixUnitaire} onChange={e => updateLigne(idx, 'prixUnitaire', Number(e.target.value))} className="input text-sm py-1.5 text-center" placeholder="0.00" />
+                  <input type="number" min="0" step="0.01" value={l.prixUnitaire || ''} onChange={e => updateLigne(idx, 'prixUnitaire', e.target.value === '' ? 0 : Number(e.target.value))} className="input text-sm py-1.5 text-center" placeholder="0" />
                 </div>
                 <div className="col-span-2 text-right font-medium text-sm pr-2">{formatCurrency(l.total)}</div>
                 <div className="col-span-1 flex justify-center">
@@ -184,7 +181,6 @@ export default function NouvelleInterventionForm({ clients }: { clients: any[] }
             <Plus className="w-4 h-4" /> Ajouter main d'œuvre
           </button>
         </div>
-
         {mainOeuvre.length === 0 ? (
           <p className="text-steel-300 text-sm italic">Aucune main d'œuvre ajoutée</p>
         ) : (
@@ -202,10 +198,10 @@ export default function NouvelleInterventionForm({ clients }: { clients: any[] }
                   <input value={l.description} onChange={e => updateLigne(idx, 'description', e.target.value)} className="input text-sm py-1.5" placeholder="Ex: Pose et installation" />
                 </div>
                 <div className="col-span-2">
-                  <input type="number" min="0" step="0.5" value={l.quantite} onChange={e => updateLigne(idx, 'quantite', Number(e.target.value))} className="input text-sm py-1.5 text-center" />
+                  <input type="number" min="0" step="0.5" value={l.quantite || ''} onChange={e => updateLigne(idx, 'quantite', e.target.value === '' ? 0 : Number(e.target.value))} className="input text-sm py-1.5 text-center" />
                 </div>
                 <div className="col-span-2">
-                  <input type="number" min="0" step="0.01" value={l.prixUnitaire} onChange={e => updateLigne(idx, 'prixUnitaire', Number(e.target.value))} className="input text-sm py-1.5 text-center" placeholder="0.00" />
+                  <input type="number" min="0" step="0.01" value={l.prixUnitaire || ''} onChange={e => updateLigne(idx, 'prixUnitaire', e.target.value === '' ? 0 : Number(e.target.value))} className="input text-sm py-1.5 text-center" placeholder="0" />
                 </div>
                 <div className="col-span-2 text-right font-medium text-sm pr-2">{formatCurrency(l.total)}</div>
                 <div className="col-span-1 flex justify-center">
@@ -233,9 +229,9 @@ export default function NouvelleInterventionForm({ clients }: { clients: any[] }
                 <select name="tva" value={form.tva} onChange={handleChange} className="border border-steel-200 rounded px-2 py-0.5 text-sm">
                   <option value={0}>0%</option>
                   <option value={10}>10%</option>
-                  <option value={20}>20%</option>
+                  <option value={19}>19%</option>
                 </select>
-                <span className="font-medium">{formatCurrency(sousTotal * form.tva / 100)}</span>
+                <span className="font-medium">{formatCurrency(sousTotal * Number(form.tva) / 100)}</span>
               </div>
             </div>
             <div className="flex justify-between pt-2 border-t border-steel-100">

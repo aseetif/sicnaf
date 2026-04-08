@@ -81,6 +81,7 @@ export default function ModifierInterventionForm({ intervention, clients }: { in
     if (!confirm('Supprimer cette intervention ? Cette action est irréversible.')) return
     await fetch(`/api/interventions/${intervention.id}`, { method: 'DELETE' })
     router.push('/admin/interventions')
+    router.refresh()
   }
 
   const pieces = lignes.filter((l: any) => l.type === 'PIECE')
@@ -94,7 +95,6 @@ export default function ModifierInterventionForm({ intervention, clients }: { in
         </Link>
       </div>
 
-      {/* Infos générales */}
       <div className="card space-y-5">
         <h2 className="font-semibold text-sicnaf-500 pb-2 border-b border-steel-100">Informations générales</h2>
         <div className="grid sm:grid-cols-2 gap-4">
@@ -149,16 +149,23 @@ export default function ModifierInterventionForm({ intervention, clients }: { in
         </div>
         {pieces.length === 0 ? <p className="text-steel-300 text-sm italic">Aucune pièce</p> : (
           <div className="space-y-3">
+            <div className="grid grid-cols-12 gap-2 text-xs text-steel-400 font-medium px-1">
+              <div className="col-span-5">Description</div>
+              <div className="col-span-2 text-center">Quantité</div>
+              <div className="col-span-2 text-center">Prix unitaire</div>
+              <div className="col-span-2 text-right">Total</div>
+              <div className="col-span-1"></div>
+            </div>
             {lignes.map((l: any, idx: number) => l.type === 'PIECE' && (
               <div key={idx} className="grid grid-cols-12 gap-2 items-center bg-steel-50 rounded-lg p-2">
                 <div className="col-span-5">
                   <input value={l.description} onChange={e => updateLigne(idx, 'description', e.target.value)} className="input text-sm py-1.5" placeholder="Description" />
                 </div>
                 <div className="col-span-2">
-                  <input type="number" min="0" step="0.01" value={l.quantite} onChange={e => updateLigne(idx, 'quantite', Number(e.target.value))} className="input text-sm py-1.5 text-center" />
+                  <input type="number" min="0" step="0.01" value={l.quantite || ''} onChange={e => updateLigne(idx, 'quantite', e.target.value === '' ? 0 : Number(e.target.value))} className="input text-sm py-1.5 text-center" />
                 </div>
                 <div className="col-span-2">
-                  <input type="number" min="0" step="0.01" value={l.prixUnitaire} onChange={e => updateLigne(idx, 'prixUnitaire', Number(e.target.value))} className="input text-sm py-1.5 text-center" />
+                  <input type="number" min="0" step="0.01" value={l.prixUnitaire || ''} onChange={e => updateLigne(idx, 'prixUnitaire', e.target.value === '' ? 0 : Number(e.target.value))} className="input text-sm py-1.5 text-center" placeholder="0" />
                 </div>
                 <div className="col-span-2 text-right font-medium text-sm pr-2">{formatCurrency(l.total)}</div>
                 <div className="col-span-1 flex justify-center">
@@ -182,16 +189,23 @@ export default function ModifierInterventionForm({ intervention, clients }: { in
         </div>
         {mainOeuvre.length === 0 ? <p className="text-steel-300 text-sm italic">Aucune main d'œuvre</p> : (
           <div className="space-y-3">
+            <div className="grid grid-cols-12 gap-2 text-xs text-steel-400 font-medium px-1">
+              <div className="col-span-5">Description</div>
+              <div className="col-span-2 text-center">Heures</div>
+              <div className="col-span-2 text-center">Taux horaire</div>
+              <div className="col-span-2 text-right">Total</div>
+              <div className="col-span-1"></div>
+            </div>
             {lignes.map((l: any, idx: number) => l.type === 'MAIN_OEUVRE' && (
               <div key={idx} className="grid grid-cols-12 gap-2 items-center bg-amber-50 rounded-lg p-2">
                 <div className="col-span-5">
-                  <input value={l.description} onChange={e => updateLigne(idx, 'description', e.target.value)} className="input text-sm py-1.5" placeholder="Description" />
+                  <input value={l.description} onChange={e => updateLigne(idx, 'description', e.target.value)} className="input text-sm py-1.5" placeholder="Ex: Pose et installation" />
                 </div>
                 <div className="col-span-2">
-                  <input type="number" min="0" step="0.5" value={l.quantite} onChange={e => updateLigne(idx, 'quantite', Number(e.target.value))} className="input text-sm py-1.5 text-center" />
+                  <input type="number" min="0" step="0.5" value={l.quantite || ''} onChange={e => updateLigne(idx, 'quantite', e.target.value === '' ? 0 : Number(e.target.value))} className="input text-sm py-1.5 text-center" />
                 </div>
                 <div className="col-span-2">
-                  <input type="number" min="0" step="0.01" value={l.prixUnitaire} onChange={e => updateLigne(idx, 'prixUnitaire', Number(e.target.value))} className="input text-sm py-1.5 text-center" />
+                  <input type="number" min="0" step="0.01" value={l.prixUnitaire || ''} onChange={e => updateLigne(idx, 'prixUnitaire', e.target.value === '' ? 0 : Number(e.target.value))} className="input text-sm py-1.5 text-center" placeholder="0" />
                 </div>
                 <div className="col-span-2 text-right font-medium text-sm pr-2">{formatCurrency(l.total)}</div>
                 <div className="col-span-1 flex justify-center">
@@ -219,7 +233,7 @@ export default function ModifierInterventionForm({ intervention, clients }: { in
                 <select name="tva" value={form.tva} onChange={handleChange} className="border border-steel-200 rounded px-2 py-0.5 text-sm">
                   <option value={0}>0%</option>
                   <option value={10}>10%</option>
-                  <option value={20}>20%</option>
+                  <option value={19}>19%</option>
                 </select>
                 <span className="font-medium">{formatCurrency(sousTotal * Number(form.tva) / 100)}</span>
               </div>

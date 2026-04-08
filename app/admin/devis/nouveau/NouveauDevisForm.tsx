@@ -1,4 +1,3 @@
-// app/admin/devis/nouveau/NouveauDevisForm.tsx
 'use client'
 
 import { useState } from 'react'
@@ -106,7 +105,7 @@ export default function NouveauDevisForm({ clients }: { clients: any[] }) {
             <textarea name="description" value={form.description} onChange={handleChange} required rows={3} className="input resize-none" />
           </div>
           <div>
-            <label className="label">Adresse du chantier</label>
+            <label className="label">Adresse chantier</label>
             <input name="adresseChantier" value={form.adresseChantier} onChange={handleChange} className="input" />
           </div>
           <div>
@@ -116,44 +115,91 @@ export default function NouveauDevisForm({ clients }: { clients: any[] }) {
         </div>
       </div>
 
-      {/* Lignes */}
-      {(['PIECE', 'MAIN_OEUVRE'] as const).map((type) => (
-        <div key={type} className="card space-y-4">
-          <div className="flex items-center justify-between">
-            <h2 className="font-semibold text-sicnaf-500">{type === 'PIECE' ? 'Pièces & Matériaux' : "Main d'œuvre"}</h2>
-            <button type="button" onClick={() => addLigne(type)} className="flex items-center gap-1.5 text-sm text-sicnaf-500 bg-sicnaf-50 px-3 py-1.5 rounded-lg hover:bg-sicnaf-100">
-              <Plus className="w-4 h-4" /> Ajouter
-            </button>
-          </div>
-          {lignes.filter(l => l.type === type).length === 0 ? (
-            <p className="text-steel-300 text-sm italic">Aucun élément</p>
-          ) : (
-            <div className="space-y-3">
-              {lignes.map((l, idx) => l.type === type && (
-                <div key={idx} className={`grid grid-cols-12 gap-2 items-center rounded-lg p-2 ${type === 'PIECE' ? 'bg-steel-50' : 'bg-amber-50'}`}>
-                  <div className="col-span-5">
-                    <input value={l.description} onChange={e => updateLigne(idx, 'description', e.target.value)} className="input text-sm py-1.5" placeholder="Description" />
-                  </div>
-                  <div className="col-span-2">
-                    <input type="number" min="0" step="0.01" value={l.quantite} onChange={e => updateLigne(idx, 'quantite', Number(e.target.value))} className="input text-sm py-1.5 text-center" />
-                  </div>
-                  <div className="col-span-2">
-                    <input type="number" min="0" step="0.01" value={l.prixUnitaire} onChange={e => updateLigne(idx, 'prixUnitaire', Number(e.target.value))} className="input text-sm py-1.5 text-center" />
-                  </div>
-                  <div className="col-span-2 text-right font-medium text-sm pr-2">{formatCurrency(l.total)}</div>
-                  <div className="col-span-1 flex justify-center">
-                    <button type="button" onClick={() => removeLigne(idx)} className="p-1 text-red-400 hover:text-red-600">
-                      <Trash2 className="w-3.5 h-3.5" />
-                    </button>
-                  </div>
-                </div>
-              ))}
-            </div>
-          )}
+      {/* Pièces */}
+      <div className="card space-y-4">
+        <div className="flex items-center justify-between">
+          <h2 className="font-semibold text-sicnaf-500">Pièces & Matériaux</h2>
+          <button type="button" onClick={() => addLigne('PIECE')} className="flex items-center gap-1.5 text-sm text-sicnaf-500 bg-sicnaf-50 px-3 py-1.5 rounded-lg hover:bg-sicnaf-100">
+            <Plus className="w-4 h-4" /> Ajouter
+          </button>
         </div>
-      ))}
+        {lignes.filter(l => l.type === 'PIECE').length === 0 ? (
+          <p className="text-steel-300 text-sm italic">Aucune pièce</p>
+        ) : (
+          <div className="space-y-3">
+            <div className="grid grid-cols-12 gap-2 text-xs text-steel-400 font-medium px-1">
+              <div className="col-span-5">Description</div>
+              <div className="col-span-2 text-center">Quantité</div>
+              <div className="col-span-2 text-center">Prix unitaire</div>
+              <div className="col-span-2 text-right">Total</div>
+              <div className="col-span-1"></div>
+            </div>
+            {lignes.map((l, idx) => l.type === 'PIECE' && (
+              <div key={idx} className="grid grid-cols-12 gap-2 items-center bg-steel-50 rounded-lg p-2">
+                <div className="col-span-5">
+                  <input value={l.description} onChange={e => updateLigne(idx, 'description', e.target.value)} className="input text-sm py-1.5" placeholder="Description" />
+                </div>
+                <div className="col-span-2">
+                  <input type="number" min="0" step="0.01" value={l.quantite || ''} onChange={e => updateLigne(idx, 'quantite', e.target.value === '' ? 0 : Number(e.target.value))} className="input text-sm py-1.5 text-center" />
+                </div>
+                <div className="col-span-2">
+                  <input type="number" min="0" step="0.01" value={l.prixUnitaire || ''} onChange={e => updateLigne(idx, 'prixUnitaire', e.target.value === '' ? 0 : Number(e.target.value))} className="input text-sm py-1.5 text-center" placeholder="0" />
+                </div>
+                <div className="col-span-2 text-right font-medium text-sm pr-2">{formatCurrency(l.total)}</div>
+                <div className="col-span-1 flex justify-center">
+                  <button type="button" onClick={() => removeLigne(idx)} className="p-1 text-red-400 hover:text-red-600">
+                    <Trash2 className="w-3.5 h-3.5" />
+                  </button>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
 
-      {/* Totals */}
+      {/* Main d'œuvre */}
+      <div className="card space-y-4">
+        <div className="flex items-center justify-between">
+          <h2 className="font-semibold text-sicnaf-500">Main d'œuvre</h2>
+          <button type="button" onClick={() => addLigne('MAIN_OEUVRE')} className="flex items-center gap-1.5 text-sm text-sicnaf-500 bg-sicnaf-50 px-3 py-1.5 rounded-lg hover:bg-sicnaf-100">
+            <Plus className="w-4 h-4" /> Ajouter
+          </button>
+        </div>
+        {lignes.filter(l => l.type === 'MAIN_OEUVRE').length === 0 ? (
+          <p className="text-steel-300 text-sm italic">Aucun élément</p>
+        ) : (
+          <div className="space-y-3">
+            <div className="grid grid-cols-12 gap-2 text-xs text-steel-400 font-medium px-1">
+              <div className="col-span-5">Description</div>
+              <div className="col-span-2 text-center">Heures</div>
+              <div className="col-span-2 text-center">Taux horaire</div>
+              <div className="col-span-2 text-right">Total</div>
+              <div className="col-span-1"></div>
+            </div>
+            {lignes.map((l, idx) => l.type === 'MAIN_OEUVRE' && (
+              <div key={idx} className="grid grid-cols-12 gap-2 items-center bg-amber-50 rounded-lg p-2">
+                <div className="col-span-5">
+                  <input value={l.description} onChange={e => updateLigne(idx, 'description', e.target.value)} className="input text-sm py-1.5" placeholder="Description" />
+                </div>
+                <div className="col-span-2">
+                  <input type="number" min="0" step="0.5" value={l.quantite || ''} onChange={e => updateLigne(idx, 'quantite', e.target.value === '' ? 0 : Number(e.target.value))} className="input text-sm py-1.5 text-center" />
+                </div>
+                <div className="col-span-2">
+                  <input type="number" min="0" step="0.01" value={l.prixUnitaire || ''} onChange={e => updateLigne(idx, 'prixUnitaire', e.target.value === '' ? 0 : Number(e.target.value))} className="input text-sm py-1.5 text-center" placeholder="0" />
+                </div>
+                <div className="col-span-2 text-right font-medium text-sm pr-2">{formatCurrency(l.total)}</div>
+                <div className="col-span-1 flex justify-center">
+                  <button type="button" onClick={() => removeLigne(idx)} className="p-1 text-red-400 hover:text-red-600">
+                    <Trash2 className="w-3.5 h-3.5" />
+                  </button>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+
+      {/* Totaux */}
       <div className="card">
         <div className="flex justify-end">
           <div className="w-72 space-y-2">
@@ -167,7 +213,7 @@ export default function NouveauDevisForm({ clients }: { clients: any[] }) {
                 <select name="tva" value={form.tva} onChange={handleChange} className="border border-steel-200 rounded px-2 py-0.5 text-sm">
                   <option value={0}>0%</option>
                   <option value={10}>10%</option>
-                  <option value={20}>20%</option>
+                  <option value={19}>19%</option>
                 </select>
                 <span className="font-medium">{formatCurrency(sousTotal * Number(form.tva) / 100)}</span>
               </div>

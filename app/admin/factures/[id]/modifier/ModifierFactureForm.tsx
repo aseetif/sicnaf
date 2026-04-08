@@ -48,6 +48,7 @@ export default function ModifierFactureForm({ facture }: { facture: any }) {
     if (!confirm('Supprimer cette facture ? Cette action est irréversible.')) return
     await fetch(`/api/factures/${facture.id}`, { method: 'DELETE' })
     router.push('/admin/factures')
+    router.refresh()
   }
 
   return (
@@ -109,16 +110,22 @@ export default function ModifierFactureForm({ facture }: { facture: any }) {
       )}
 
       <div className="flex items-center justify-between">
-        <div className="flex gap-3">
-          <button type="submit" disabled={loading} className="btn-primary">
-            {loading ? <><Loader2 className="w-4 h-4 animate-spin" /> Enregistrement...</> : <><Save className="w-4 h-4" /> Enregistrer</>}
-          </button>
-          <Link href={`/admin/interventions/${facture.interventionId}/facture`} className="btn-outline">Annuler</Link>
-        </div>
-        <button type="button" onClick={handleDelete} className="flex items-center gap-2 px-4 py-2 text-red-500 hover:bg-red-50 rounded-lg text-sm transition-colors">
-          <Trash2 className="w-4 h-4" /> Supprimer la facture
+      <div className="flex gap-3">
+        <button type="submit" disabled={loading} className="btn-primary">
+          {loading ? <><Loader2 className="w-4 h-4 animate-spin" /> Enregistrement...</> : <><Save className="w-4 h-4" /> Enregistrer</>}
         </button>
+        <Link href={`/admin/interventions/${facture.interventionId}/facture`} className="btn-outline">
+          Annuler
+        </Link>
       </div>
+      <button
+        type="button"
+        onClick={handleDelete}
+        className="flex items-center gap-2 px-4 py-2 text-red-500 hover:bg-red-50 rounded-lg text-sm transition-colors"
+      >
+        <Trash2 className="w-4 h-4" /> Supprimer la facture
+      </button>
+    </div>
     </form>
   )
 }
