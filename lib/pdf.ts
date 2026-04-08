@@ -33,7 +33,7 @@ export async function generateFacturePDF(facture: any) {
   doc.setTextColor(255, 255, 255)
   doc.setFontSize(8)
   const companyPhone = process.env.NEXT_PUBLIC_COMPANY_PHONE || '01 23 45 67 89'
-  const companyEmail = process.env.NEXT_PUBLIC_COMPANY_EMAIL || 'contact@sicnaf.fr'
+  const companyEmail = process.env.NEXT_PUBLIC_COMPANY_EMAIL || 'contact@sicnaf.com'
   const companyAddress = process.env.NEXT_PUBLIC_COMPANY_ADDRESS || 'Paris, France'
   doc.text(companyPhone, pageWidth - 15, 18, { align: 'right' })
   doc.text(companyEmail, pageWidth - 15, 24, { align: 'right' })
@@ -191,7 +191,7 @@ export async function generateFacturePDF(facture: any) {
   doc.setTextColor(255, 255, 255)
   doc.setFontSize(7)
   doc.setFont('helvetica', 'normal')
-  doc.text('SICNAF — www.sicnaf.fr — contact@sicnaf.fr', pageWidth / 2, footerY + 2, { align: 'center' })
+  doc.text('SICNAF — www.sicnaf.fr — contact@sicnaf.com', pageWidth / 2, footerY + 2, { align: 'center' })
   doc.text('SIRET : ' + (process.env.NEXT_PUBLIC_COMPANY_SIRET || ''), pageWidth / 2, footerY + 8, { align: 'center' })
 
   doc.save(`facture-${facture.numero}.pdf`)
@@ -325,7 +325,7 @@ export async function generateDevisPDF(devis: any) {
   doc.rect(0, footerY - 7, pageWidth, 2, 'F')
   doc.setTextColor(255, 255, 255)
   doc.setFontSize(7)
-  doc.text('SICNAF — www.sicnaf.fr — contact@sicnaf.fr', pageWidth / 2, footerY + 2, { align: 'center' })
+  doc.text('SICNAF — www.sicnaf.fr — contact@sicnaf.com', pageWidth / 2, footerY + 2, { align: 'center' })
 
   doc.save(`devis-${devis.numero}.pdf`)
 }
