@@ -1,13 +1,12 @@
-export const dynamic = 'force-dynamic'
-
-// app/api/devis/public/route.ts
 import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/lib/prisma'
+
+export const dynamic = 'force-dynamic'
 
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json()
-    const { nom, prenom, email, telephone, societe, typeService, description, adresse, dateSouhaitee } = body
+    const { nom, prenom, email, telephone, societe, typeService, description, adresse, dateSouhaitee, tonnage, dimensions, marqueVehicule } = body
 
     if (!nom || !prenom || !email || !telephone || !typeService || !description) {
       return NextResponse.json({ error: 'Champs obligatoires manquants' }, { status: 400 })
@@ -24,6 +23,9 @@ export async function POST(req: NextRequest) {
         description,
         adresse: adresse || null,
         datesouhaitee: dateSouhaitee || null,
+        tonnage: tonnage || null,
+        dimensions: dimensions || null,
+        marqueVehicule: marqueVehicule || null,
         statut: 'NOUVEAU',
       },
     })

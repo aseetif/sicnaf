@@ -120,6 +120,24 @@ export default function DemandesClient({ demandes }: { demandes: any[] }) {
                 <span className="text-steel-400">Description</span>
                 <p className="text-steel-600 leading-relaxed mt-1">{selected.description}</p>
               </div>
+              {selected.tonnage && (
+                <div>
+                  <span className="text-steel-400">Tonnage</span>
+                  <div>{selected.tonnage}</div>
+                </div>
+              )}
+              {selected.dimensions && (
+                <div>
+                  <span className="text-steel-400">Dimensions</span>
+                  <div>{selected.dimensions}</div>
+                </div>
+              )}
+              {selected.marqueVehicule && (
+                <div>
+                  <span className="text-steel-400">Marque véhicule</span>
+                  <div>{selected.marqueVehicule}</div>
+                </div>
+              )}
             </div>
 
             <div className="border-t border-steel-100 mt-4 pt-4 space-y-2">

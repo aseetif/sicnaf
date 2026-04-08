@@ -130,7 +130,10 @@ model DemandeDevis {
   description  String
   adresse      String?
   datesouhaitee String?
-  statut       String   @default("NOUVEAU") // NOUVEAU, EN_COURS, TRAITE
+  tonnage      String?    // ← ajouter
+  dimensions   String?    // ← ajouter
+  marqueVehicule String?  // ← ajouter
+  statut       String   @default("NOUVEAU")
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
 }

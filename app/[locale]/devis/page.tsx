@@ -14,6 +14,7 @@ export default function DevisPage() {
   const [form, setForm] = useState({
     nom: '', prenom: '', email: '', telephone: '', societe: '',
     typeService: '', description: '', adresse: '', dateSouhaitee: '',
+    tonnage: '', dimensions: '', marqueVehicule: '',
   })
 
   const types = [
@@ -65,8 +66,7 @@ export default function DevisPage() {
               <h2 className="font-display text-2xl font-bold text-sicnaf-500 mb-3">{t('success_title')}</h2>
               <p className="text-steel-500 max-w-md mx-auto">{t('success_desc')}</p>
               <button
-                onClick={() => { setSuccess(false); setForm({ nom: '', prenom: '', email: '', telephone: '', societe: '', typeService: '', description: '', adresse: '', dateSouhaitee: '' }) }}
-                className="btn-primary mt-8"
+                onClick={() => { setSuccess(false); setForm({ nom: '', prenom: '', email: '', telephone: '', societe: '', typeService: '', description: '', adresse: '', dateSouhaitee: '', tonnage: '', dimensions: '', marqueVehicule: '' }) }}                className="btn-primary mt-8"
               >
                 {t('new_request')}
               </button>
@@ -122,6 +122,18 @@ export default function DevisPage() {
                   <div>
                     <label className="label">{t('date')}</label>
                     <input type="date" name="dateSouhaitee" value={form.dateSouhaitee} onChange={handleChange} className="input" />
+                  </div>
+                  <div>
+                    <label className="label">{t('tonnage')}</label>
+                    <input name="tonnage" value={form.tonnage} onChange={handleChange} className="input" placeholder="Ex: 5 tonnes" />
+                  </div>
+                  <div>
+                    <label className="label">{t('dimensions')}</label>
+                    <input name="dimensions" value={form.dimensions} onChange={handleChange} className="input" placeholder="Ex: 6m x 2.5m x 2m" />
+                  </div>
+                  <div>
+                    <label className="label">{t('marque_vehicule')}</label>
+                    <input name="marqueVehicule" value={form.marqueVehicule} onChange={handleChange} className="input" placeholder="Ex: Mercedes, Renault..." />
                   </div>
                 </div>
               </div>
