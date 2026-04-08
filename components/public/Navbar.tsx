@@ -33,7 +33,13 @@ export default function Navbar() {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link href={`/${locale}`} className="flex items-center gap-3">
-            <img src="/images/logo.png" alt="SICNAF" className="h-10 w-auto" />
+            <div className="w-9 h-9 bg-sicnaf-500 rounded-lg flex items-center justify-center">
+              <span className="text-white font-display font-bold text-sm">SN</span>
+            </div>
+            <div>
+              <span className="font-display font-bold text-xl text-sicnaf-500">SICNAF</span>
+              <div className="text-[10px] text-steel-400 leading-none -mt-0.5">Solutions Industrielles</div>
+            </div>
           </Link>
 
           {/* Desktop nav */}
