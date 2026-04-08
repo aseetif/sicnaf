@@ -109,14 +109,14 @@ export async function generateFacturePDF(facture: any) {
   if (pieces.length > 0) {
     tableData.push([{ content: 'PIÈCES & MATÉRIAUX', colSpan: 5, styles: { fillColor: [30, 58, 95], textColor: [255, 255, 255], fontStyle: 'bold', fontSize: 9 } }])
     pieces.forEach((p: any) => {
-      tableData.push([p.description, 'Pièce', p.quantite, `${p.prixUnitaire.toFixed(2)} €`, `${p.total.toFixed(2)} €`])
+      tableData.push([p.description, 'Pièce', p.quantite, `${p.prixUnitaire.toFixed(2)} DA`, `${p.total.toFixed(2)} DA`])
     })
   }
 
   if (mainOeuvre.length > 0) {
     tableData.push([{ content: 'MAIN D\'ŒUVRE', colSpan: 5, styles: { fillColor: [30, 58, 95], textColor: [255, 255, 255], fontStyle: 'bold', fontSize: 9 } }])
     mainOeuvre.forEach((m: any) => {
-      tableData.push([m.description, 'M.O.', m.quantite, `${m.prixUnitaire.toFixed(2)} €`, `${m.total.toFixed(2)} €`])
+      tableData.push([m.description, 'M.O.', m.quantite, `${m.prixUnitaire.toFixed(2)} DA`, `${m.total.toFixed(2)} DA`])
     })
   }
 
@@ -157,12 +157,12 @@ export async function generateFacturePDF(facture: any) {
   doc.setTextColor(100, 116, 139)
   doc.text('Sous-total HT :', boxX, finalY + 5)
   doc.setTextColor(50, 50, 50)
-  doc.text(`${facture.sousTotal.toFixed(2)} €`, pageWidth - 15, finalY + 5, { align: 'right' })
+  doc.text(`${facture.sousTotal.toFixed(2)} DA`, pageWidth - 15, finalY + 5, { align: 'right' })
 
   doc.setTextColor(100, 116, 139)
   doc.text(`TVA (${facture.tva}%) :`, boxX, finalY + 13)
   doc.setTextColor(50, 50, 50)
-  doc.text(`${(facture.total - facture.sousTotal).toFixed(2)} €`, pageWidth - 15, finalY + 13, { align: 'right' })
+  doc.text(`${(facture.total - facture.sousTotal).toFixed(2)} DA`, pageWidth - 15, finalY + 13, { align: 'right' })
 
   // Total line
   doc.setFillColor(primaryBlue[0], primaryBlue[1], primaryBlue[2])
@@ -171,7 +171,7 @@ export async function generateFacturePDF(facture: any) {
   doc.setFont('helvetica', 'bold')
   doc.setFontSize(10)
   doc.text('TOTAL TTC :', boxX, finalY + 25)
-  doc.text(`${facture.total.toFixed(2)} €`, pageWidth - 15, finalY + 25, { align: 'right' })
+  doc.text(`${facture.total.toFixed(2)} DA`, pageWidth - 15, finalY + 25, { align: 'right' })
 
   // Notes
   if (facture.notes) {
@@ -273,8 +273,8 @@ export async function generateDevisPDF(devis: any) {
     l.description,
     l.type === 'PIECE' ? 'Pièce' : 'M.O.',
     l.quantite,
-    `${l.prixUnitaire.toFixed(2)} €`,
-    `${l.total.toFixed(2)} €`,
+    `${l.prixUnitaire.toFixed(2)} DA`,
+    `${l.total.toFixed(2)} DA`,
   ])
 
   autoTable(doc, {
@@ -304,11 +304,11 @@ export async function generateDevisPDF(devis: any) {
   doc.setTextColor(100, 116, 139)
   doc.text('Sous-total HT :', boxX, finalY + 5)
   doc.setTextColor(50, 50, 50)
-  doc.text(`${devis.sousTotal.toFixed(2)} €`, pageWidth - 15, finalY + 5, { align: 'right' })
+  doc.text(`${devis.sousTotal.toFixed(2)} DA`, pageWidth - 15, finalY + 5, { align: 'right' })
   doc.setTextColor(100, 116, 139)
   doc.text(`TVA (${devis.tva}%) :`, boxX, finalY + 13)
   doc.setTextColor(50, 50, 50)
-  doc.text(`${(devis.total - devis.sousTotal).toFixed(2)} €`, pageWidth - 15, finalY + 13, { align: 'right' })
+  doc.text(`${(devis.total - devis.sousTotal).toFixed(2)} DA`, pageWidth - 15, finalY + 13, { align: 'right' })
 
   doc.setFillColor(primaryBlue[0], primaryBlue[1], primaryBlue[2])
   doc.roundedRect(boxX - 5, finalY + 17, 70, 12, 2, 2, 'F')
@@ -316,7 +316,7 @@ export async function generateDevisPDF(devis: any) {
   doc.setFont('helvetica', 'bold')
   doc.setFontSize(10)
   doc.text('TOTAL TTC :', boxX, finalY + 25)
-  doc.text(`${devis.total.toFixed(2)} €`, pageWidth - 15, finalY + 25, { align: 'right' })
+  doc.text(`${devis.total.toFixed(2)} DA`, pageWidth - 15, finalY + 25, { align: 'right' })
 
   const footerY = doc.internal.pageSize.getHeight() - 20
   doc.setFillColor(primaryBlue[0], primaryBlue[1], primaryBlue[2])

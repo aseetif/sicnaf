@@ -22,9 +22,10 @@ export function formatDate(date: Date | string): string {
 }
 
 export function formatCurrency(amount: number): string {
-  return new Intl.NumberFormat('fr-FR', {
+  return new Intl.NumberFormat('fr-DZ', {
     style: 'currency',
-    currency: 'EUR',
+    currency: 'DZD',
+    minimumFractionDigits: 2,
   }).format(amount)
 }
 
