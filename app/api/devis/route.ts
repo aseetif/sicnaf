@@ -37,7 +37,7 @@ export async function POST(req: NextRequest) {
       adresseChantier: adresseChantier || null,
       sousTotal: sousTotal || 0,
       total: total || 0,
-      tva: tva || 20,
+      tva: parseFloat(tva) || 20,
       statut: 'EN_ATTENTE',
       lignes: {
         create: (lignes || []).map((l: any) => ({

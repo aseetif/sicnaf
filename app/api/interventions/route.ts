@@ -38,7 +38,7 @@ export async function POST(req: NextRequest) {
       notes: notes || null,
       sousTotal: sousTotal || 0,
       total: total || 0,
-      tva: tva || 20,
+      tva: parseFloat(tva) || 20,
       lignes: {
         create: (lignes || []).map((l: any) => ({
           description: l.description,
