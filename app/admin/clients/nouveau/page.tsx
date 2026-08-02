@@ -11,7 +11,7 @@ export default function NouveauClientPage() {
   const [error, setError] = useState('')
   const [form, setForm] = useState({
     nom: '', prenom: '', email: '', telephone: '', adresse: '',
-    ville: '', codePostal: '', societe: '', siret: '', notes: '',
+    ville: '', codePostal: '', societe: '', siret: '', notes: '', nis: '', nif: '', rc: '', rib: '', nArt: '' 
   })
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -95,6 +95,26 @@ export default function NouveauClientPage() {
               <label className="label">SIRET</label>
               <input name="siret" value={form.siret} onChange={handleChange} className="input" />
             </div>
+            <div>
+            <label className="label">NIS</label>
+            <input name="nis" value={form.nis} onChange={handleChange} className="input" />
+          </div>
+          <div>
+            <label className="label">NIF</label>
+            <input name="nif" value={form.nif} onChange={handleChange} className="input" />
+          </div>
+          <div>
+            <label className="label">N° RC</label>
+            <input name="rc" value={form.rc} onChange={handleChange} className="input" />
+          </div>
+          <div>
+            <label className="label">RIB</label>
+            <input name="rib" value={form.rib} onChange={handleChange} className="input" />
+          </div>
+          <div>
+            <label className="label">N° Article</label>
+            <input name="nArt" value={form.nArt} onChange={handleChange} className="input" />
+          </div>
           </div>
           <div>
             <label className="label">Notes</label>

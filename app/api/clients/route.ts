@@ -22,14 +22,14 @@ export async function POST(req: NextRequest) {
   if (!session) return NextResponse.json({ error: 'Non autorisé' }, { status: 401 })
 
   const body = await req.json()
-  const { nom, prenom, telephone, email, adresse, ville, codePostal, societe, siret, notes } = body
+  const { nom, prenom, telephone, email, adresse, ville, codePostal, societe, siret, nis, nif, rc, rib, nArt, notes } = body
 
   if (!nom || !prenom || !telephone) {
     return NextResponse.json({ error: 'Nom, prénom et téléphone sont requis' }, { status: 400 })
   }
 
   const client = await prisma.client.create({
-    data: { nom, prenom, telephone, email: email || null, adresse: adresse || null, ville: ville || null, codePostal: codePostal || null, societe: societe || null, siret: siret || null, notes: notes || null },
+    data: { nom, prenom, telephone, email: email || null, adresse: adresse || null, ville: ville || null, codePostal: codePostal || null, societe: societe || null, siret: siret || null, nis: nis || null, nif: nif || null, rc: rc || null, rib: rib || null, nArt: nArt || null, notes: notes || null },
   })
   return NextResponse.json(client, { status: 201 })
 }

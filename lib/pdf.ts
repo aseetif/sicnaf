@@ -32,12 +32,9 @@ export async function generateFacturePDF(facture: any) {
   // Contact info header right
   doc.setTextColor(255, 255, 255)
   doc.setFontSize(8)
-  const companyPhone = process.env.NEXT_PUBLIC_COMPANY_PHONE || '01 23 45 67 89'
-  const companyEmail = process.env.NEXT_PUBLIC_COMPANY_EMAIL || 'contact@sicnaf.com'
-  const companyAddress = process.env.NEXT_PUBLIC_COMPANY_ADDRESS || 'Paris, France'
-  doc.text(companyPhone, pageWidth - 15, 18, { align: 'right' })
-  doc.text(companyEmail, pageWidth - 15, 24, { align: 'right' })
-  doc.text(companyAddress, pageWidth - 15, 30, { align: 'right' })
+  doc.text('+213 550 59 56 30', pageWidth - 15, 18, { align: 'right' })
+  doc.text('contact@sicnaf.com', pageWidth - 15, 24, { align: 'right' })
+  doc.text('Beni Tamou, Zaouia, Blida 09000, Algerie', pageWidth - 15, 30, { align: 'right' })
 
   // Gold accent line
   doc.setFillColor(accentGold[0], accentGold[1], accentGold[2])
@@ -56,19 +53,19 @@ export async function generateFacturePDF(facture: any) {
 
   // Dates
   doc.setFontSize(9)
-  doc.text(`Émission : ${new Date(facture.dateEmission || facture.createdAt).toLocaleDateString('fr-FR')}`, pageWidth - 15, 76, { align: 'right' })
+  doc.text(`Emission : ${new Date(facture.dateEmission || facture.createdAt).toLocaleDateString('fr-FR')}`, pageWidth - 15, 76, { align: 'right' })
   if (facture.dateEcheance) {
-    doc.text(`Échéance : ${new Date(facture.dateEcheance).toLocaleDateString('fr-FR')}`, pageWidth - 15, 82, { align: 'right' })
+    doc.text(`Echeance : ${new Date(facture.dateEcheance).toLocaleDateString('fr-FR')}`, pageWidth - 15, 82, { align: 'right' })
   }
 
   // Client section
   doc.setFillColor(lightGray[0], lightGray[1], lightGray[2])
-  doc.roundedRect(12, 55, 85, 40, 3, 3, 'F')
+  doc.roundedRect(12, 55, 85, 70, 3, 3, 'F')
 
   doc.setTextColor(primaryBlue[0], primaryBlue[1], primaryBlue[2])
   doc.setFontSize(9)
   doc.setFont('helvetica', 'bold')
-  doc.text('FACTURÉ À', 18, 64)
+  doc.text('FACTURE A', 18, 64)
 
   doc.setFont('helvetica', 'normal')
   doc.setTextColor(50, 50, 50)
@@ -82,22 +79,27 @@ export async function generateFacturePDF(facture: any) {
     if (client.societe) doc.text(client.societe, 18, 79)
     if (client.adresse) doc.text(client.adresse, 18, 86)
     if (client.telephone) doc.text(client.telephone, 18, 93)
+    if (client.nis) doc.text(`NIS: ${client.nis}`, 18, 100)
+    if (client.nif) doc.text(`NIF: ${client.nif}`, 18, 107)
+    if (client.rc) doc.text(`RC: ${client.rc}`, 18, 114)
+    if (client.rib) doc.text(`RIB: ${client.rib}`, 18, 121)
+    if (client.nArt) doc.text(`N° Art: ${client.nArt}`, 18, 128)
   }
 
   // Intervention info
   doc.setFontSize(9)
   doc.setTextColor(primaryBlue[0], primaryBlue[1], primaryBlue[2])
   doc.setFont('helvetica', 'bold')
-  doc.text('OBJET DE L\'INTERVENTION', 15, 108)
+  doc.text("OBJET DE L'INTERVENTION", 15, 140)
 
   doc.setDrawColor(primaryBlue[0], primaryBlue[1], primaryBlue[2])
   doc.setLineWidth(0.5)
-  doc.line(15, 110, pageWidth - 15, 110)
+  doc.line(15, 142, pageWidth - 15, 142)
 
   doc.setFont('helvetica', 'normal')
   doc.setTextColor(50, 50, 50)
   doc.setFontSize(9)
-  doc.text(facture.intervention?.description || '', 15, 117, { maxWidth: pageWidth - 30 })
+  doc.text(facture.intervention?.description || '', 15, 149, { maxWidth: pageWidth - 30 })
 
   // Lignes table
   const lignes = facture.intervention?.lignes || []
@@ -107,22 +109,22 @@ export async function generateFacturePDF(facture: any) {
   const tableData: any[] = []
 
   if (pieces.length > 0) {
-    tableData.push([{ content: 'PIÈCES & MATÉRIAUX', colSpan: 5, styles: { fillColor: [30, 58, 95], textColor: [255, 255, 255], fontStyle: 'bold', fontSize: 9 } }])
+    tableData.push([{ content: 'PIECES & MATERIAUX', colSpan: 5, styles: { fillColor: [30, 58, 95], textColor: [255, 255, 255], fontStyle: 'bold', fontSize: 9 } }])
     pieces.forEach((p: any) => {
-      tableData.push([p.description, 'Pièce', p.quantite, `${p.prixUnitaire.toFixed(2)} DA`, `${p.total.toFixed(2)} DA`])
+      tableData.push([p.description, 'Piece', p.quantite, `${p.prixUnitaire.toFixed(2)} DA`, `${p.total.toFixed(2)} DA`])
     })
   }
 
   if (mainOeuvre.length > 0) {
-    tableData.push([{ content: 'MAIN D\'ŒUVRE', colSpan: 5, styles: { fillColor: [30, 58, 95], textColor: [255, 255, 255], fontStyle: 'bold', fontSize: 9 } }])
+    tableData.push([{ content: "MAIN D'OEUVRE", colSpan: 5, styles: { fillColor: [30, 58, 95], textColor: [255, 255, 255], fontStyle: 'bold', fontSize: 9 } }])
     mainOeuvre.forEach((m: any) => {
       tableData.push([m.description, 'M.O.', m.quantite, `${m.prixUnitaire.toFixed(2)} DA`, `${m.total.toFixed(2)} DA`])
     })
   }
 
   autoTable(doc, {
-    startY: 125,
-    head: [['Description', 'Type', 'Qté', 'P.U. HT', 'Total HT']],
+    startY: 157,
+    head: [['Description', 'Type', 'Qte', 'P.U. HT', 'Total HT']],
     body: tableData,
     theme: 'grid',
     headStyles: {
@@ -182,17 +184,20 @@ export async function generateFacturePDF(facture: any) {
   }
 
   // Footer
-  const footerY = doc.internal.pageSize.getHeight() - 20
+  const footerY = doc.internal.pageSize.getHeight() - 30
   doc.setFillColor(primaryBlue[0], primaryBlue[1], primaryBlue[2])
-  doc.rect(0, footerY - 5, pageWidth, 25, 'F')
+  doc.rect(0, footerY - 5, pageWidth, 35, 'F')
   doc.setFillColor(accentGold[0], accentGold[1], accentGold[2])
   doc.rect(0, footerY - 7, pageWidth, 2, 'F')
 
   doc.setTextColor(255, 255, 255)
-  doc.setFontSize(7)
+  doc.setFontSize(6.5)
   doc.setFont('helvetica', 'normal')
-  doc.text('SICNAF — www.sicnaf.fr — contact@sicnaf.com', pageWidth / 2, footerY + 2, { align: 'center' })
-  doc.text('SIRET : ' + (process.env.NEXT_PUBLIC_COMPANY_SIRET || ''), pageWidth / 2, footerY + 8, { align: 'center' })
+  doc.text('Capital Social: 19 200 000 DA  |  N° Article: 09230500153  |  R.C N° 09/00-0803817 B02', pageWidth / 2, footerY + 2, { align: 'center' })
+  doc.text('NIF: 000209080381744  |  NIS: 0002 0923 00562 61', pageWidth / 2, footerY + 8, { align: 'center' })
+  doc.text('CCP Bancaire BEA: 3900.20.63  |  Compte BEA N° 091 22 00487/87', pageWidth / 2, footerY + 14, { align: 'center' })
+  doc.text('RIB: 002 000 910 9122 00487 87  |  Agence: Ouled Yaiche 091', pageWidth / 2, footerY + 20, { align: 'center' })
+  doc.text('SICNAF — www.sicnaf.com — contact@sicnaf.com', pageWidth / 2, footerY + 26, { align: 'center' })
 
   doc.save(`facture-${facture.numero}.pdf`)
 }
@@ -221,6 +226,13 @@ export async function generateDevisPDF(devis: any) {
   doc.setTextColor(accentGold[0], accentGold[1], accentGold[2])
   doc.text('Solutions Industrielles & Interventions', 15, 30)
 
+  // Contact info header right
+  doc.setTextColor(255, 255, 255)
+  doc.setFontSize(8)
+  doc.text('+213 550 59 56 30', pageWidth - 15, 18, { align: 'right' })
+  doc.text('contact@sicnaf.com', pageWidth - 15, 24, { align: 'right' })
+  doc.text('Beni Tamou, Zaouia, Blida 09000, Algerie', pageWidth - 15, 30, { align: 'right' })
+
   doc.setFillColor(accentGold[0], accentGold[1], accentGold[2])
   doc.rect(0, 45, pageWidth, 2, 'F')
 
@@ -235,11 +247,11 @@ export async function generateDevisPDF(devis: any) {
 
   doc.setFontSize(9)
   doc.text(`Date : ${new Date(devis.createdAt).toLocaleDateString('fr-FR')}`, pageWidth - 15, 76, { align: 'right' })
-  doc.text(`Valable 30 jours`, pageWidth - 15, 82, { align: 'right' })
+  doc.text('Valable 30 jours', pageWidth - 15, 82, { align: 'right' })
 
   // Client
   doc.setFillColor(lightGray[0], lightGray[1], lightGray[2])
-  doc.roundedRect(12, 55, 85, 35, 3, 3, 'F')
+  doc.roundedRect(12, 55, 85, 70, 3, 3, 'F')
   doc.setTextColor(primaryBlue[0], primaryBlue[1], primaryBlue[2])
   doc.setFontSize(9)
   doc.setFont('helvetica', 'bold')
@@ -255,31 +267,36 @@ export async function generateDevisPDF(devis: any) {
     doc.setFontSize(9)
     if (client.societe) doc.text(client.societe, 18, 79)
     if (client.telephone) doc.text(client.telephone, 18, 86)
+    if (client.nis) doc.text(`NIS: ${client.nis}`, 18, 93)
+    if (client.nif) doc.text(`NIF: ${client.nif}`, 18, 100)
+    if (client.rc) doc.text(`RC: ${client.rc}`, 18, 107)
+    if (client.rib) doc.text(`RIB: ${client.rib}`, 18, 114)
+    if (client.nArt) doc.text(`N° Art: ${client.nArt}`, 18, 121)
   }
 
   // Description
   doc.setFontSize(9)
   doc.setTextColor(primaryBlue[0], primaryBlue[1], primaryBlue[2])
   doc.setFont('helvetica', 'bold')
-  doc.text('DESCRIPTION DES TRAVAUX', 15, 103)
+  doc.text('DESCRIPTION DES TRAVAUX', 15, 138)
   doc.setDrawColor(primaryBlue[0], primaryBlue[1], primaryBlue[2])
-  doc.line(15, 105, pageWidth - 15, 105)
+  doc.line(15, 140, pageWidth - 15, 140)
   doc.setFont('helvetica', 'normal')
   doc.setTextColor(50, 50, 50)
-  doc.text(devis.description, 15, 112, { maxWidth: pageWidth - 30 })
+  doc.text(devis.description, 15, 147, { maxWidth: pageWidth - 30 })
 
   const lignes = devis.lignes || []
   const tableData = lignes.map((l: any) => [
     l.description,
-    l.type === 'PIECE' ? 'Pièce' : 'M.O.',
+    l.type === 'PIECE' ? 'Piece' : 'M.O.',
     l.quantite,
     `${l.prixUnitaire.toFixed(2)} DA`,
     `${l.total.toFixed(2)} DA`,
   ])
 
   autoTable(doc, {
-    startY: 120,
-    head: [['Description', 'Type', 'Qté', 'P.U. HT', 'Total HT']],
+    startY: 155,
+    head: [['Description', 'Type', 'Qte', 'P.U. HT', 'Total HT']],
     body: tableData,
     theme: 'grid',
     headStyles: { fillColor: [245, 158, 11], textColor: [255, 255, 255], fontStyle: 'bold', fontSize: 9 },
@@ -318,14 +335,20 @@ export async function generateDevisPDF(devis: any) {
   doc.text('TOTAL TTC :', boxX, finalY + 25)
   doc.text(`${devis.total.toFixed(2)} DA`, pageWidth - 15, finalY + 25, { align: 'right' })
 
-  const footerY = doc.internal.pageSize.getHeight() - 20
+  // Footer
+  const footerY = doc.internal.pageSize.getHeight() - 30
   doc.setFillColor(primaryBlue[0], primaryBlue[1], primaryBlue[2])
-  doc.rect(0, footerY - 5, pageWidth, 25, 'F')
+  doc.rect(0, footerY - 5, pageWidth, 35, 'F')
   doc.setFillColor(accentGold[0], accentGold[1], accentGold[2])
   doc.rect(0, footerY - 7, pageWidth, 2, 'F')
   doc.setTextColor(255, 255, 255)
-  doc.setFontSize(7)
-  doc.text('SICNAF — www.sicnaf.fr — contact@sicnaf.com', pageWidth / 2, footerY + 2, { align: 'center' })
+  doc.setFontSize(6.5)
+  doc.setFont('helvetica', 'normal')
+  doc.text('Capital Social: 19 200 000 DA  |  N° Article: 09230500153  |  R.C N° 09/00-0803817 B02', pageWidth / 2, footerY + 2, { align: 'center' })
+  doc.text('NIF: 000209080381744  |  NIS: 0002 0923 00562 61', pageWidth / 2, footerY + 8, { align: 'center' })
+  doc.text('CCP Bancaire BEA: 3900.20.63  |  Compte BEA N° 091 22 00487/87', pageWidth / 2, footerY + 14, { align: 'center' })
+  doc.text('RIB: 002 000 910 9122 00487 87  |  Agence: Ouled Yaiche 091', pageWidth / 2, footerY + 20, { align: 'center' })
+  doc.text('SICNAF — www.sicnaf.com — contact@sicnaf.com', pageWidth / 2, footerY + 26, { align: 'center' })
 
   doc.save(`devis-${devis.numero}.pdf`)
 }

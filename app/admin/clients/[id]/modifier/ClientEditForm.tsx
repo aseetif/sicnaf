@@ -20,6 +20,11 @@ export default function ClientEditForm({ client }: { client: any }) {
     codePostal: client.codePostal || '',
     societe: client.societe || '',
     siret: client.siret || '',
+    nis: client.nis || '',
+    nif: client.nif || '',
+    rc: client.rc || '',
+    rib: client.rib || '',
+    nArt: client.nArt || '',
     notes: client.notes || '',
   })
 
